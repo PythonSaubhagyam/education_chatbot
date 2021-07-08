@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/python1/Documents/chatbot/english_model/model.tflearn"
+all_model_checkpoint_paths: "/home/python1/Documents/chatbot/english_model/model.tflearn"
