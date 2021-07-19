@@ -32,9 +32,9 @@ class ManualResponse_arabicForm(forms.ModelForm):
 class Links_manualResponseForm(forms.ModelForm):
     class Meta:
         model = links_manual_response
-        fields = ['new_topic', 'email_id'] 
+        fields = ['new_topic', 'email_id']
 
 class arabicLinks_manualResponseForm(forms.ModelForm):
     class Meta:
         model = arabic_links_manual_response
-        fields = ['new_topic_arabic', 'email_id_arabic'] 
+        fields = ['new_topic_arabic', 'email_id_arabic']

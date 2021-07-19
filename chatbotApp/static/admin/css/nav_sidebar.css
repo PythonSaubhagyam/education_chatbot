@@ -61,6 +61,7 @@
 .main.shifted > #nav-sidebar {
     left: 24px;
     margin-left: 0;
+    border:none;
 }
 
 [dir="rtl"] .main.shifted > #nav-sidebar {

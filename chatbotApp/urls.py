@@ -9,7 +9,7 @@ urlpatterns = [
     path('InquiryForm/', views.AskConsultant, name="inquiryForm"),
     path('InquiryForm1/', views.AskConsultant_arabic, name="inquiryForm1"),
     path('queryForm/', views.manualResponse, name="queryForm"),
-    path('queryForm/', views.manualResponse_arabic, name="queryForm1"),
-    path('linkForm', views.manualResponse_links, name="linkForm"),
-    path('linkForm_arabic', views.arabic_manualResponse_links, name="linkForm_arabic")
+    path('queryForm1/', views.manualResponse_arabic, name="queryForm1"),
+    path('linkForm/', views.manualResponse_links, name="linkForm"),
+    path('linkForm_arabic/', views.arabic_manualResponse_links, name="linkForm_arabic")
 ]

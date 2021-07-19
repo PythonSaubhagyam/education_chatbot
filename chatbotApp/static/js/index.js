@@ -8,7 +8,7 @@ $(document).ready(function () {
 
         ajax_call(formDataSerialized)
         msgArray.push(formDataSerialized)
-        console.log('Message Array : '.concat(msgArray))
+        console.log('On Send Button Click - Message Array : '.concat(msgArray))
     })
 });
 

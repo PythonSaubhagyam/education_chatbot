@@ -13,6 +13,8 @@ from .models import About_Us, About_Us_arabic, AskConsultant, link_keyword
 from .trained_english_model import response
 from .arabic_trained_model import response_arabic
 global link_flag, text_flag
+from django.core.mail import EmailMultiAlternatives
+
 
 ans_input = ""
 
@@ -143,7 +145,7 @@ def select_text_by_keyword(queryString):
     if bot_response:
         return bot_response+'<br> If you think that I have not provided you the right answer, kindly ' + form_link
     else:
-        return 'Sorry, I don\'t have an answer for this right now.. <br><br>' + form_link 
+        return 'Sorry, I don\'t have an answer for this right now.. <br><br>' + form_link
 
 
 def select_text_by_keyword_arabic(queryString):
@@ -158,7 +160,7 @@ def select_text_by_keyword_arabic(queryString):
         return bot_response+'<br> If you think that I have not provided you the right answer, kindly ' + form_link
     else:
         return 'في حال انكم غير راضين عن اجابتي، فضلا . '+ form_link
-                                                                                                
+
 
 def select_link_by_keyword(queryString):
     """
@@ -229,7 +231,7 @@ def manualResponse(request):
             Query.new_keyword = request.POST.get('new_keyword')
             Query.email_id = request.POST.get('email_id')
             Query.save()
-            new_key_mail(Query.new_keyword)
+            new_key_mail('A new query has been added!', 'Query : ' + Query.new_keyword + '\nGo to https://yabushark.pythonanywhere.com/admin/chatbotApp/manual_response to provide response', 'test1.saubhagyam@gmail.com', 'test1.saubhagyam@gmail.com')
             return redirect('home')
     else:
         form = ManualResponseForm
@@ -240,10 +242,10 @@ def manualResponse_links(request):
         form = Links_manualResponseForm(request.POST)
         if form.is_valid():
             Query = form.save(commit=False)
-            Query.new_topic = request.POST.get('new_keyword')
+            Query.new_topic = request.POST.get('new_topic')
             Query.email_id = request.POST.get('email_id')
             Query.save()
-            new_key_mail(Query.new_topic)
+            new_key_mail('A new inquiry for material has been added!', 'Topic : ' + Query.new_topic + '\nGo to https://yabushark.pythonanywhere.com/admin/chatbotApp/links_manual_response to provide response', 'test1.saubhagyam@gmail.com', 'test1.saubhagyam@gmail.com')
             return redirect('home')
     else:
         form = Links_manualResponseForm
@@ -254,10 +256,10 @@ def arabic_manualResponse_links(request):
         form = arabicLinks_manualResponseForm(request.POST)
         if form.is_valid():
             Query = form.save(commit=False)
-            Query.new_topic_arabic = request.POST.get('new_keyword')
-            Query.email_id_arabic = request.POST.get('email_id')
+            Query.new_topic_arabic = request.POST.get('new_topic_arabic')
+            Query.email_id_arabic = request.POST.get('email_id_arabic')
             Query.save()
-            new_key_mail(Query.new_topic_arabic)
+            new_key_mail('تمت إضافة استفسار جديد عن المواد!', 'عنوان : ' + Query.new_topic_arabic + '\nاذهب إلى https://yabushark.pythonanywhere.com/admin/chatbotApp/arabic_links_manual_response/ لتقديم استجابة', 'test1.saubhagyam@gmail.com','test1.saubhagyam@gmail.com')
             return redirect('home')
     else:
         form = arabicLinks_manualResponseForm
@@ -272,6 +274,7 @@ def manualResponse_arabic(request):
             Query.new_keyword = request.POST.get('new_keyword_arabic')
             Query.email_id = request.POST.get('email_id_arabic')
             Query.save()
+            new_key_mail('تم إضافة استعلام جديد!', 'طلبك : ' + Query.new_keyword_arabic + '\n اذهب إلى https://yabushark.pythonanywhere.com/admin/chatbotApp/manual_response_arabic/ لتقديم استجابة',  'test1.saubhagyam@gmail.com','test1.saubhagyam@gmail.com')
             return redirect('home')
     else:
         form = ManualResponseForm
@@ -288,10 +291,10 @@ def arabic_exit():
     return arabic_exit
 
 
-def new_key_mail(question):
-    subject = 'A new query is added!'
-    message = 'A new query ''%s'' is added to the database. \nRun the server and go to http://127.0.0.1:8000/admin/chatbotApp/manual_response/ to add response.' % (
-        question)
+def new_key_mail(sub,msg,sender,recipient):
+    subject = sub
+    message = msg
+    # 'A new query ''%s'' is added to the database. \nRun the server and go to https://yabushark.pythonanywhere.com/admin/chatbotApp/manual_response/ to add response.' % (question)
     mail = EmailMultiAlternatives(
-        subject, message, 'serverchatbot@gmail.com', ['serverchatbot@gmail.com'])
+        subject, message, sender, [recipient])
     mail.send()

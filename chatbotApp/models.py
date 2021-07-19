@@ -51,15 +51,6 @@ class manual_response(models.Model):
     def __str__(self):
         return self.new_keyword
 
-    def save(self, *args, **kwargs):
-        subject = 'An admin has responded to your query!'
-        message = 'Your query : ' + self.new_keyword + '\nAdmin Response : ' + self.admin_data
-        recipient = self.email_id
-        mail = EmailMultiAlternatives(subject, message, 'serverchatbot@gmail.com', [recipient])
-        mail.send()
-
-        super(manual_response, self).save(*args, **kwargs)
-
     class Meta:
         # Add verbose name
         verbose_name_plural = 'Manual Responses'
@@ -71,16 +62,7 @@ class links_manual_response(models.Model):
     email_id = models.EmailField(verbose_name='Added By', default='')
 
     def __str__(self):
-        return self.new_keyword
-
-    def save(self, *args, **kwargs):
-        subject = 'An admin has responded to your query!'
-        message = 'Your query : ' + self.new_topic + '\nAdmin Response : ' + self.admin_data
-        recipient = self.email_id
-        mail = EmailMultiAlternatives(subject, message, 'serverchatbot@gmail.com', [recipient])
-        mail.send()
-
-        super(manual_response, self).save(*args, **kwargs)
+        return self.new_topic
 
     class Meta:
         # Add verbose name
@@ -93,16 +75,7 @@ class arabic_links_manual_response(models.Model):
     email_id_arabic = models.EmailField(verbose_name='Added By', default='')
 
     def __str__(self):
-        return self.new_keyword
-
-    def save(self, *args, **kwargs):
-        subject = 'An admin has responded to your query!'
-        message = 'Your query : ' + self.new_topic_arabic + '\nAdmin Response : ' + self.admin_data
-        recipient = self.email_id_arabic
-        mail = EmailMultiAlternatives(subject, message, 'serverchatbot@gmail.com', [recipient])
-        mail.send()
-
-        super(manual_response, self).save(*args, **kwargs)
+        return self.new_topic_arabic
 
     class Meta:
         # Add verbose name
@@ -159,27 +132,6 @@ class manual_response_arabic(models.Model):
     def __str__(self):
         return self.new_keyword_arabic
 
-    @staticmethod
-    def new_key_mail_arabic(self):
-        subject = 'A new arabic keyword is added!'
-        message = 'A new keyword ''%s'' is added to the database. \nRun the server and go to http://127.0.0.1:8000/admin/accounts/manual_response_arabic/%s/change to add response.' % (
-        self.new_keyword_arabic, self.new_keyword_arabic)
-        mail = EmailMultiAlternatives(subject, message, 'serverchatbot@gmail.com', ['serverchatbot@gmail.com'])
-        mail.send()
-
-    def __init__(self, *args, **kwargs):
-        super(manual_response_arabic, self).__init__(*args, **kwargs)
-        self.new_key_mail_arabic(self)
-
-    def save(self, *args, **kwargs):
-        subject = 'An admin has responded to your query!'
-        message = 'Your query : ' + self.new_keyword_arabic + '\nAdmin Response : ' + self.admin_data_arabic
-        recipient = self.email_id_arabic
-        mail = EmailMultiAlternatives(subject, message, 'serverchatbot@gmail.com', [recipient])
-        mail.send()
-
-        super(manual_response_arabic, self).save(*args, **kwargs)
-
     class Meta:
         # Add verbose name
         verbose_name_plural = 'Manual Responses (Arabic)'
@@ -198,4 +150,3 @@ class AskConsultant_arabic(models.Model):
         # Add verbose name
         verbose_name_plural = 'Inquiries (Arabic)'
         verbose_name = 'inquiry in arabic'
-

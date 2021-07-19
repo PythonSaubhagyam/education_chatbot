@@ -68,7 +68,7 @@ for doc in documents:
     bag = []
     pattern_words = doc[0]
     pattern_words = [stemmer.stem(word.lower()) for word in pattern_words]
-    
+
     # create bag of words array
     for w in words:
         bag.append(1) if w in pattern_words else bag.append(0)
@@ -111,16 +111,16 @@ model.save('model.tflearn')
 
 
 import pickle
-pickle.dump( {'words':words, 'classes':classes, 'train_x':train_x, 'train_y':train_y}, open( "training_data", "wb" ) )
+pickle.dump( {'english_words':words, 'english_classes':classes, 'train_x':train_x, 'train_y':train_y}, open( "english_training_data", "wb" ) )
 
 
 # In[14]:
 
 
 # restoring all the data structures
-data = pickle.load( open( "training_data", "rb" ) )
-words = data['words']
-classes = data['classes']
+data = pickle.load( open( "english_training_data", "rb" ) )
+words = data['english_words']
+classes = data['english_classes']
 train_x = data['train_x']
 train_y = data['train_y']
 
@@ -150,7 +150,7 @@ def bow(sentence, words, show_details=False):
     bag = [0]*len(words)
     for s in sentence_words:
         for i,w in enumerate(words):
-            if w == s: 
+            if w == s:
                 bag[i] = 1
                 if show_details:
                     print ("found in bag: %s" % w)

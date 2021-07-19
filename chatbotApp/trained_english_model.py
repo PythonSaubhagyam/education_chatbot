@@ -20,7 +20,7 @@ import json
 # In[4]:
 
 
-with open('chatbotApp/intents.json',encoding="utf8", errors='ignore') as json_data:
+with open('/home/yabushark/education_chatbot/chatbotApp/intents.json',encoding="utf8", errors='ignore') as json_data:
     intents = json.load(json_data)
 
 
@@ -67,7 +67,7 @@ for doc in documents:
     bag = []
     pattern_words = doc[0]
     pattern_words = [stemmer.stem(word.lower()) for word in pattern_words]
-    
+
     # create bag of words array
     for w in words:
         bag.append(1) if w in pattern_words else bag.append(0)
@@ -106,7 +106,7 @@ model = tflearn.DNN(net, tensorboard_dir='tflearn_logs')
 
 
 # load the saved model
-model.load('/home/riddhi/Documents/chatbot_new1/chatbot/chatbotApp/model.tflearn')
+model.load('/home/yabushark/education_chatbot/chatbotApp/model.tflearn')
 
 # In[10]:
 
@@ -126,7 +126,7 @@ def bow(sentence, words, show_details=False):
     bag = [0]*len(words)
     for s in sentence_words:
         for i,w in enumerate(words):
-            if w == s: 
+            if w == s:
                 bag[i] = 1
                 if show_details:
                     print ("found in bag: %s" % w)

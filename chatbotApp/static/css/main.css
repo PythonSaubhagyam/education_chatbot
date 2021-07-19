@@ -1,15 +1,5 @@
-/* Hide scrollbar for Chrome, Safari and Opera */
-.body::-webkit-scrollbar {
-	display: none;
-}
-
 body {
-	/* overflow-y: hidden; */
-	-ms-overflow-style: none;
-	/* IE and Edge */
-	scrollbar-width   : none;
-	/* Firefox */
-	overflow-y        : none;
+	overflow-y: auto;
 }
 
 .header h1 {
@@ -26,6 +16,7 @@ body {
 	max-width     : 1280px;
 	margin        : auto;
 	padding-bottom: 40px;
+	overflow-y    : hidden;
 }
 
 img {
@@ -37,7 +28,7 @@ img {
 	float       : left;
 	width       : 40%;
 	border-right: 1px solid #c4c4c4;
-	overflow-y  : auto;color
+	overflow-y  : auto;
 }
 
 .inbox_msg {
@@ -151,7 +142,7 @@ img {
 	display    : inline-block;
 	/* left    : -200; */
 	float      : right;
-	width      : 7%;
+	width      : 8%;
 	margin-left: 10px;
 }
 
@@ -162,8 +153,9 @@ img {
 }
 
 .sent_msg {
-	float: right;
-	width: 46%;
+	float         : right;
+	width         : 46%;
+	padding-bottom: 2%;
 }
 
 .input_msg_write input {
@@ -202,8 +194,9 @@ img {
 }
 
 .message-form input {
-	width     : 50%;
+	width     : 90%;
 	border    : none;
+	outline   : none;
 	font-size : 16px;
 	margin-top: 5px;
 }
@@ -214,7 +207,11 @@ img {
 }
 
 .msg_send_btn {
-	position      : abrgb(169, 126, 41)#fff;
+	position      : absolute;
+	z-index       : 1;
+	right         : 10px;
+	bottom        : 10px;
+	color         : #fff;
 	border        : none;
 	background    : #007100;
 	font-size     : 12px;
@@ -230,15 +227,15 @@ img {
 	margin-right: 8px;
 }
 
-.msg_send_btn:hover {
+.msg_send_btn:hover {What are the types of central questionnaires?
 	background: #fff;
 	color     : #333;
 }
 
 #send_button {
-	position      : absolute;
-	z-index       : 1;
-	right         : 4%;
+	position      : fixed;
+	z-index       : 999;
+	right         : 20px;
 	bottom        : 0px;
 	color         : #fff;
 	border        : none;
@@ -250,10 +247,37 @@ img {
 	outline       : none !important;
 	transition    : background 0.2s ease;
 	cursor        : pointer;
-	margin-bottom : 8;
-	opacity       : 0.5;rgb(169, 126, 41)
+	margin-bottom : 7;
+	opacity       : 0.5;
+}
 
 .logo {
 	width : 100px;
 	height: 100px;
+}
+
+@media only screen and (max-width:600px) {
+	.received_withd_msg {
+		width: 100%;
+	}
+
+	.received_msg {
+		display       : inline-block;
+		vertical-align: top;
+		width         : 50%;
+	}
+
+	.sent_msg {
+		display       : inline-block;
+		vertical-align: top;
+		width         : 50%;
+	}
+
+	.sent_msg_img {
+		width: 20%;
+	}
+
+	.incoming_msg_img {
+		width: 12%
+	}
 }

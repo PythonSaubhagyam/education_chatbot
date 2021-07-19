@@ -16,10 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-admin.site.site_header = 'CHATBOT ADMIN INTERFACE'
-admin.site.site_title = 'Chatbot Admin Interface'
-admin.site.index_title = ''
-admin.site.index_template = 'admin/my_index.html'
+admin.site.site_header = 'Quality and Academic Accreditation Chatbot Administration'
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -20,9 +20,9 @@ import json
 # In[2]:
 
 
-# import our chat-bot intents file
+# import our chat-bot intents file   /home/riddhi/Desktop/arabic.json
 import pandas as pd
-with open('/home/riddhi/Desktop/arabic.json',encoding="utf8", errors='ignore') as f:
+with open('/home/yabushark/education_chatbot/chatbotApp/arabic.json',encoding="utf8", errors='ignore') as f:
         intents = json.loads(f.read())
 
 
@@ -80,7 +80,7 @@ for doc in documents:
     bag = []
     pattern_words = doc[0]
     pattern_words = [stemmer.stem(word.lower()) for word in pattern_words]
-    
+
     # create bag of words array
     for w in words:
         bag.append(1) if w in pattern_words else bag.append(0)
@@ -170,7 +170,7 @@ def bow(sentence, words, show_details=False):
     bag = [0]*len(words)
     for s in sentence_words:
         for i,w in enumerate(words):
-            if w == s: 
+            if w == s:
                 bag[i] = 1
                 if show_details:
                     print ("found in bag: %s" % w)
